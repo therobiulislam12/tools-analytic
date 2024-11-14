@@ -14,6 +14,8 @@ class TATP_Menu{
         // create admin menu
         add_action('admin_menu', array($this, 'tatp_admin_menu_page'));
 
+        add_action( 'wp_ajax_tatp_request', array( $this, 'tatp_ajax_get_posts' ) );
+
     }
 
     /**
@@ -68,5 +70,11 @@ class TATP_Menu{
      */
     public function tatp_paid_tools_menu_content(){
         echo '<div class="wrap"><h1>Paid Tools Analytic</h1></div>';
+    }
+
+    public function tatp_ajax_get_posts(){
+        print_r($_POST);
+
+        exit();
     }
 }

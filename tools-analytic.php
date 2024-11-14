@@ -45,6 +45,9 @@ final class Tools_Analytic {
 
         // after all plugins loaded
         add_action( 'plugins_loaded', array( $this, 'tatp_initialize_plugin' ) );
+
+        // enqueue script
+        add_action('wp_enqueue_scripts', array($this, 'tatp_frontend_scripts'));
     }
 
     /**
@@ -96,6 +99,15 @@ final class Tools_Analytic {
         require_once TATP_PATH . '/includes/Admin.php';
         require_once TATP_PATH . '/includes/Frontend.php';
         require_once TATP_PATH . '/includes/functions.php';
+    }
+
+    public function tatp_frontend_scripts(){
+        wp_enqueue_script( 'tatp-outbound', TATP_ASSETS . '/js/outbound.js', ['jquery'], TATP_VERSION, array( 'in_footer' => true ) );
+
+        wp_localize_script('tatp-outbound', 'TATPObject', array(
+            'ajax_url' => admin_url('admin-ajax.php')
+        ));
+
     }
 
 }
