@@ -55,8 +55,8 @@ class TATP_Menu {
             __( 'Paid Tools', 'tools-analytic' ),
             __( 'Paid Tools', 'tools-analytic' ),
             $capability,
-            'paid_tools_analytic',
-            array( $this, 'tatp_paid_tools_menu_content' )
+            'admin.php?page=tools_analytic#/paid-tools-analytic',
+            
         );
     }
 
