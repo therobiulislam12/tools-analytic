@@ -105,7 +105,8 @@ final class Tools_Analytic {
         wp_enqueue_script( 'tatp-outbound', TATP_ASSETS . '/js/outbound.js', ['jquery'], TATP_VERSION, array( 'in_footer' => true ) );
 
         wp_localize_script('tatp-outbound', 'TATPObject', array(
-            'ajax_url' => admin_url('admin-ajax.php')
+            'ajax_url' => admin_url('admin-ajax.php'),
+            'nonce' => wp_create_nonce('tatp-toolspedia-outbound')
         ));
 
     }
