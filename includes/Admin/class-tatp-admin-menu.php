@@ -14,7 +14,11 @@ class TATP_Menu {
         // create admin menu
         add_action( 'admin_menu', array( $this, 'tatp_admin_menu_page' ) );
 
+        // add meta data on database
         add_action( 'wp_ajax_tatp_request', array( $this, 'tatp_ajax_get_posts' ) );
+
+        // admin enqueue scripts
+        add_action( 'admin_enqueue_scripts', array( $this, 'tatp_admin_enqueue_script' ) );
 
     }
 
@@ -61,7 +65,10 @@ class TATP_Menu {
      * @return void
      */
     public function tatp_main_menu_content() {
-        echo '<div class="wrap"><h1>Tools Analytic</h1></div>';
+        printf(
+            '<div class="wrap" id="tools-analytic-dashboard">%s</div>',
+            esc_html__( 'Loading…', 'tools-analytic' )
+        );
     }
 
     /**
@@ -72,6 +79,12 @@ class TATP_Menu {
         echo '<div class="wrap"><h1>Paid Tools Analytic</h1></div>';
     }
 
+    /**
+     *
+     * Ajax Posts and update meta data here
+     *
+     * @return never
+     */
     public function tatp_ajax_get_posts() {
         check_ajax_referer( 'tatp-toolspedia-outbound', $_POST['security'], false );
 
@@ -94,5 +107,42 @@ class TATP_Menu {
         // error_log(print_r(['get_post' => $post_id], true), 0);
 
         exit();
+    }
+
+    /**
+     * Summary of tatp_admin_enqueue_script
+     * @param mixed $admin_page
+     * @return void
+     */
+    public function tatp_admin_enqueue_script( $admin_page ) {
+        wp_enqueue_script( 'tatp-outbound', TATP_ASSETS . '/js/outbound.js', ['jquery'], TATP_VERSION, array( 'in_footer' => true ) );
+
+        if ( 'toplevel_page_tools_analytic' !== $admin_page ) {
+            return;
+        }
+
+        $asset_file = TATP_PATH . '/build/index.asset.php';
+
+        if ( !file_exists( $asset_file ) ) {
+            return;
+        }
+
+        $asset = include $asset_file;
+
+        wp_enqueue_script(
+            'tatp-admin-dashboard',
+            TATP_URL . '/build/index.js',
+            $asset['dependencies'],
+            $asset['version'],
+            array(
+                'in_footer' => true,
+            )
+        );
+        
+        wp_enqueue_style(
+            'tatp-admin-dashboard',
+            TATP_URL . '/build/index.css',
+        );
+
     }
 }
