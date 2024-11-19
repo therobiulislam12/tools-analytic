@@ -1,20 +1,20 @@
-import { Link, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 
 const Main = () => {
   return (
     <>
       <div className="tatp-main-header">
-        <h2>Sponsorship Management</h2>
+        <span>Sponsorship Management</span>
       </div>
 
       <div className="tatp-dasboard">
         <nav className="tatp-header-menu">
           <ul>
             <li>
-              <Link to="/">Dashboard</Link>
+              <NavLink to="/">Dashboard</NavLink>
             </li>
             <li>
-              <Link to="paid-tools-analytic">Paid Tools</Link>
+              <NavLink to="paid-tools-analytic">Paid Tools</NavLink>
             </li>
           </ul>
         </nav>
