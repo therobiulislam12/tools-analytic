@@ -6,7 +6,8 @@
   "author": "Robiul Islam <therobiulislam12@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@wordpress/scripts": "^30.5.1"
+    "@wordpress/scripts": "^30.5.1",
+    "react-router-dom": "^6.28.0"
   },
   "scripts": {
     "build": "wp-scripts build",

@@ -132,5 +132,10 @@ class TATP_Menu {
                 'in_footer' => true,
             )
         );
+
+        wp_enqueue_style(
+            'tatp-admin-dashboard',
+            TATP_URL . '/build/index.css'
+        );
     }
 }
