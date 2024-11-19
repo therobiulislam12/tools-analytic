@@ -4,13 +4,12 @@
   "main": "index.js",
   "repository": "https://github.com/therobiulislam12/tools-analytic.git",
   "author": "Robiul Islam <therobiulislam12@gmail.com>",
-  "scripts": {
-    "start": "wp-scripts start",
-    "build": "wp-scripts build"
-  },
   "license": "MIT",
   "dependencies": {
-    "@wordpress/scripts": "^30.5.1",
-    "react-router-dom": "^6.28.0"
+    "@wordpress/scripts": "^30.5.1"
+  },
+  "scripts": {
+    "build": "wp-scripts build",
+    "start": "wp-scripts start"
   }
 }

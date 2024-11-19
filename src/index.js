@@ -1,10 +1,14 @@
-import domReady from "@wordpress/dom-ready";
-import { createRoot } from "@wordpress/element";
-import App from "./App";
-import "./index.scss";
+import domReady from '@wordpress/dom-ready';
+import { createRoot } from '@wordpress/element';
 
-domReady(() => {
-  const root = createRoot(document.getElementById("tools-analytic-dashboard"));
+const SettingsPage = () => {
+    return <div>Placeholder for settings page</div>;
+};
 
-  root.render(<App />);
-});
+domReady( () => {
+    const root = createRoot(
+        document.getElementById( 'tools-analytic-dashboard' )
+    );
+
+    root.render( <SettingsPage /> );
+} );
