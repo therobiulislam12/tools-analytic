@@ -1,6 +1,6 @@
 jQuery(document).ready(function ($) {
     $(".toolspedia-outbound").on("click", function (e) {
-      e.preventDefault(); // Prevent default behavior of the button (if any)
+      // e.preventDefault(); // Prevent default behavior of the button (if any)
   
       // Find the closest parent containing `.e-con-inner` and get the anchor tag's href
       const postUrl = $(this)

@@ -137,5 +137,10 @@ class TATP_Menu {
             'tatp-admin-dashboard',
             TATP_URL . '/build/index.css'
         );
+
+        wp_localize_script('tatp-admin-dashboard', 'TATP', array(
+            'ajax_url' => admin_url('admin-ajax.php'),
+            'nonce' => wp_create_nonce('tatp-post-get')
+        ));
     }
 }

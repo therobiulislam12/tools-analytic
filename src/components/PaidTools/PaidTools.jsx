@@ -1,7 +1,12 @@
+import DataTable from "../DataTable";
+
 const PaidTools = () => {
   return (
-    <div>PaidTools</div>
-  )
-}
+    <>
+      <h2>Paid Tools</h2>
+      <DataTable />
+    </>
+  );
+};
 
 export default PaidTools;
