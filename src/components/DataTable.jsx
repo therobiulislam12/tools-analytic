@@ -1,18 +1,90 @@
+import { useState } from "react";
+
 const DataTable = ({ tools = [] }) => {
+  const [titleSortBy, setTitleSortBy] = useState("");
+  const [clickSortBy, setClickSortBy] = useState("");
+
+  const allTools = tools;
+
+  const handleTitleSort = () => {
+    if (titleSortBy === "desc") {
+      setTitleSortBy("asc");
+      allTools.sort((a, b) => a.title.localeCompare(b.title));
+    } else if(titleSortBy === 'asc'){
+      setTitleSortBy("desc");
+      allTools.sort((a, b) => b.title.localeCompare(a.title));
+    } else{
+      setTitleSortBy('asc');
+      allTools.sort((a, b) => a.title.localeCompare(b.title));
+    }
+  };
+
+  const handleClickSort = () => {
+    if (clickSortBy === "desc") {
+      setClickSortBy("asc");
+      allTools.sort((a, b) => a.total_clicks.localeCompare(b.total_clicks));
+    } else if(clickSortBy === 'asc'){
+      setClickSortBy("desc");
+      allTools.sort((a, b) => b.total_clicks.localeCompare(a.total_clicks));
+    } else{
+      setClickSortBy('asc');
+      allTools.sort((a, b) => a.total_clicks.localeCompare(b.total_clicks));
+    }
+  };
+
   return (
-    <table
-      border="1"
-      style={{ width: "100%", textAlign: "left", borderCollapse: "collapse" }}
-    >
+    <table className="wp-list-table widefat fixed striped table-view-list posts">
       <thead>
         <tr>
-          <th>ID</th>
-          <th>Title</th>
-          <th>Total Clicks</th>
+          <td className="manage-column">
+            <span>ID</span>
+          </td>
+          <th
+            scope="col"
+            id="title"
+            className={`manage-column column-title column-primary sorted ${titleSortBy ? titleSortBy : ''}`}
+            aria-sort="ascending"
+            abbr="Title"
+          >
+            <div className="tatp-table-head" onClick={handleTitleSort}>
+              <span>Tool Title</span>
+              <span className="sorting-indicators">
+                <span
+                  className="sorting-indicator asc"
+                  aria-hidden="true"
+                ></span>
+                <span
+                  className="sorting-indicator desc"
+                  aria-hidden="true"
+                ></span>
+              </span>
+            </div>
+          </th>
+          <th
+            scope="col"
+            id="total-clicks"
+            className={`manage-column column-title column-primary sorted ${titleSortBy ? titleSortBy : ''}`}
+            aria-sort="descending"
+            abbr="Title"
+          >
+            <div className="tatp-table-head" onClick={handleClickSort}>
+              <span>Total Clicks</span>
+              <span className="sorting-indicators">
+                <span
+                  className="sorting-indicator asc"
+                  aria-hidden="true"
+                ></span>
+                <span
+                  className="sorting-indicator desc"
+                  aria-hidden="true"
+                ></span>
+              </span>
+            </div>
+          </th>
         </tr>
       </thead>
       <tbody>
-        {tools.map((tool) => (
+        {allTools.map((tool) => (
           <tr key={tool.id}>
             <td># {tool.id}</td>
             <td>{tool.title}</td>

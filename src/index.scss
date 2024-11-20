@@ -67,3 +67,12 @@ a:hover {
     }
   }
 }
+
+.tatp-table-head{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+  color: #1a7efb;
+  cursor: pointer;
+}
