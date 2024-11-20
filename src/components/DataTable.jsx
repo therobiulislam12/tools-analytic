@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const DataTable = ({ tools = [] }) => {
   const [titleSortBy, setTitleSortBy] = useState("");
-  const [clickSortBy, setClickSortBy] = useState("");
+  const [clickSortBy, setClickSortBy] = useState("desc");
 
   const allTools = tools;
 
@@ -22,12 +22,9 @@ const DataTable = ({ tools = [] }) => {
   const handleClickSort = () => {
     if (clickSortBy === "desc") {
       setClickSortBy("asc");
-      allTools.sort((a, b) => a.total_clicks.localeCompare(b.total_clicks));
-    } else if(clickSortBy === 'asc'){
-      setClickSortBy("desc");
       allTools.sort((a, b) => b.total_clicks.localeCompare(a.total_clicks));
-    } else{
-      setClickSortBy('asc');
+    } else {
+      setClickSortBy("desc");
       allTools.sort((a, b) => a.total_clicks.localeCompare(b.total_clicks));
     }
   };
@@ -63,7 +60,7 @@ const DataTable = ({ tools = [] }) => {
           <th
             scope="col"
             id="total-clicks"
-            className={`manage-column column-title column-primary sorted ${titleSortBy ? titleSortBy : ''}`}
+            className={`manage-column column-title column-primary sorted ${clickSortBy ? clickSortBy : ''}`}
             aria-sort="descending"
             abbr="Title"
           >

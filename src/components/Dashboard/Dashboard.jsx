@@ -18,7 +18,7 @@ const Dashboard = () => {
       .then((res) => res.json())
       .then((res) => {
         if (res.success) {
-          setAllTools(res?.data);
+          setAllTools(res?.data.sort((a, b) => a.total_clicks.localeCompare(b.total_clicks)));
         }
       });
   }, []);
