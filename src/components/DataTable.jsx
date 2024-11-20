@@ -22,10 +22,10 @@ const DataTable = ({ tools = [] }) => {
   const handleClickSort = () => {
     if (clickSortBy === "desc") {
       setClickSortBy("asc");
-      allTools.sort((a, b) => b.total_clicks.localeCompare(a.total_clicks));
+      allTools.sort((a, b) => Number(a.total_clicks) - Number(b.total_clicks));
     } else {
       setClickSortBy("desc");
-      allTools.sort((a, b) => a.total_clicks.localeCompare(b.total_clicks));
+      allTools.sort((a, b) => Number(b.total_clicks) - Number(a.total_clicks));
     }
   };
 

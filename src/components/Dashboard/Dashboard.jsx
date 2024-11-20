@@ -3,6 +3,16 @@ import { useState, useEffect } from "react";
 
 const Dashboard = () => {
   const [allTools, setAllTools] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const totalTools = allTools.length;
+
+    // set pagination
+    const perPage = 2;
+    const offset = (currentPage - 1) * perPage;
+  
+    // found total page
+    let totalPages = Math.ceil(totalTools / perPage);
 
   useEffect(() => {
     fetch(TATP.ajax_url, {
@@ -18,10 +28,12 @@ const Dashboard = () => {
       .then((res) => res.json())
       .then((res) => {
         if (res.success) {
-          setAllTools(res?.data.sort((a, b) => a.total_clicks.localeCompare(b.total_clicks)));
+          setAllTools(res?.data.sort((a, b) => Number(b.total_clicks) - Number(a.total_clicks)));
         }
       });
   }, []);
+
+  console.log(totalPages);
 
   return (
     <>
