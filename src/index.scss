@@ -25,6 +25,7 @@ a:hover {
 }
 
 #tools-analytic-dashboard {
+  position: relative;
   .tatp-main-header {
     background-color: #fff;
     padding: 12px 24px;
@@ -65,14 +66,24 @@ a:hover {
     .tatp-dashboard-content {
       padding: 20px 15px;
     }
-  }
-}
 
-.tatp-table-head{
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 5px;
-  color: #1a7efb;
-  cursor: pointer;
+    .tatp-table-head{
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 5px;
+      color: #1a7efb;
+      cursor: pointer;
+    }
+
+    .tatp-tool-tile{
+      color: #1a7efb;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease-in;
+      &:hover{
+        text-decoration: underline;
+      }
+    }
+  }
 }

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const DataTable = ({ tools = [], handlePrevPage, handleNextPage, currentPage, totalPages, totalTools }) => {
+const DataTable = ({ tools = [], handlePrevPage, handleNextPage, currentPage, totalPages, totalTools, onOpenModal }) => {
   const [titleSortBy, setTitleSortBy] = useState("");
   const [clickSortBy, setClickSortBy] = useState("desc");
 
@@ -89,7 +89,7 @@ const DataTable = ({ tools = [], handlePrevPage, handleNextPage, currentPage, to
           {allTools.map((tool) => (
             <tr key={tool.id}>
               <td># {tool.id}</td>
-              <td>{tool.title}</td>
+              <td onClick={() => onOpenModal(tool)} className="tatp-tool-tile">{tool.title}</td>
               <td>{tool.total_clicks || 0}</td>
             </tr>
           ))}

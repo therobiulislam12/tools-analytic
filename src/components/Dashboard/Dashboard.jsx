@@ -1,10 +1,20 @@
 import DataTable from "../DataTable";
 import { useState, useEffect } from "react";
+import TATPModal from "../Modal";
 
 const Dashboard = () => {
   const [allTools, setAllTools] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalTools, setTotalTools] = useState(0);
+  const [modalTool, setModalTool] = useState({});
+
+  const [open, setOpen] = useState(false);
+
+  const onOpenModal = (tool) => {
+    setModalTool(tool);
+    setOpen(true);
+  };
+  const onCloseModal = () => setOpen(false);
 
   // set pagination
   const perPage = 5;
@@ -78,7 +88,9 @@ const Dashboard = () => {
         currentPage={currentPage}
         totalPages={totalPages}
         totalTools={totalTools}
+        onOpenModal={onOpenModal}
       />
+      <TATPModal tool={modalTool} onCloseModal={onCloseModal} open={open} />
     </>
   );
 };

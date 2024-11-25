@@ -1,5 +1,6 @@
 import domReady from '@wordpress/dom-ready';
 import { createRoot } from '@wordpress/element';
+import 'react-responsive-modal/styles.css';
 import './index.scss';
 import App from './App';
 
